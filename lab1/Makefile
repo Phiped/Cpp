@@ -12,17 +12,20 @@ CXXFLAGS =  -O2 -Wall -Wextra -pedantic-errors -Wold-style-cast
 CXXFLAGS += -std=c++11 
 CXXFLAGS += -g
 LDFLAGS =   -g 
+#LDLIBS = -l
 #CPPFLAGS += -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = ltest hello
+PROGS = ltest hello decode encode
 
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
-ltest: ltest.o list.o
+ltest: ltest.o list.o 
+decode: coding.o
+encode: coding.o
 
 # Phony targets
 .PHONY: all clean
@@ -41,3 +44,4 @@ clean:
 # Include the *.d files
 SRC = $(wildcard *.cc)
 include $(SRC:.cc=.d)
+

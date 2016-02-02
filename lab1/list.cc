@@ -6,21 +6,19 @@ List::List() {
 }
 
 List::~List() {
-	Node* temp = first;
+	Node* previous = first;
 
-	while(first == nullptr){
-		while(temp == nullptr){
-			temp = temp->next;
-		}
-		delete temp;
-		temp = first;
+	while(first != nullptr){
+	first = first->next;
+	delete previous;
+	previous = first;
 	}
 }
 
 bool List::exists(int d) const {
 	Node* temp = first;
 	while(temp != nullptr){
-		if(temp->value ==d ){
+		if(temp->value == d){
 			return true;
 		}
 		temp = temp->next;
@@ -60,12 +58,7 @@ void List::remove(int d, DeleteFlag df) {
 	while(temp != nullptr){
 		switch(df){
 			case DeleteFlag::EQUAL:
-				if (temp->value == d && temp->next == nullptr){
-					before->next = nullptr;
-					delete temp;
-					return;
-				}
-				else if(temp->value == d && temp == first){
+				if(temp->value == d && temp == first){
 					temp2 = first;
 					first = temp->next;
 					delete temp2;
@@ -82,12 +75,7 @@ void List::remove(int d, DeleteFlag df) {
 				}
 				break;
 			case DeleteFlag::GREATER:
-				if (temp->value > d && temp->next == nullptr){
-					before->next = nullptr;
-					delete temp;
-					return;
-				}
-				else if(temp->value > d && temp == first){
+				if(temp->value > d && temp == first){
 					temp2 = first;
 					first = temp->next;
 					delete temp2;
@@ -104,12 +92,7 @@ void List::remove(int d, DeleteFlag df) {
 				}
 				break;
 			case DeleteFlag::LESS:
-				if (temp->value < d && temp->next == nullptr){
-					before->next = nullptr;
-					delete temp;
-					return;
-				}
-				else if(temp->value < d && temp == first){
+				if(temp->value < d && temp == first){
 					temp2 = first;
 					first = temp->next;
 					delete temp2;
