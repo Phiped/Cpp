@@ -13,6 +13,7 @@ public:
 	std::string encode(const std::string& text) const;
 	std::string decode(const std::string& code) const;
 private:
+	std::string table[26];
 };
 
 #endif

@@ -8,7 +8,9 @@
 
 using namespace std;
 
+
 Dictionary::Dictionary() {
+
 }
 
 bool Dictionary::contains(const string& word) const {
