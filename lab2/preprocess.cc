@@ -1,20 +1,30 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include <algorithm>
 
 using namespace std;
-
 
 string process(string line){
   string newLine = line;
   int size = line.size();
+  vector<string> trigrams;
 
-  newLine.append(" " + size-2);
+  /*newLine.append(" " + size-2);*/
 
   for (int i = 0; i < size-2; ++i)
   {
-    newLine.append(" " + line.substr(i,3));
+    trigrams.push_back(line.substr(i,3));
   }
+
+  sort(trigrams.begin(),trigrams.end());
+
+  for (int i = 0; i < trigrams.size(); ++i)
+  {
+    newLine.append(" " + trigrams[i]);
+  }
+
 	return newLine;
 }
 

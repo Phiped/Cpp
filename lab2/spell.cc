@@ -10,6 +10,12 @@ using namespace std;
 int main() {
 	Dictionary dict;
 	string word;
+
+	if(dict.contains("sand")){
+		cout<<"hej"<<endl;
+	}
+
+	/*
 	while (cin >> word) {
 		transform(word.begin(), word.end(), word.begin(), ::tolower);
 		if (dict.contains(word)) {
@@ -25,5 +31,5 @@ int main() {
 				}
 			}
 		}
-	}
+	}*/
 }
