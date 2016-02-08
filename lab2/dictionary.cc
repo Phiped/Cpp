@@ -10,6 +10,7 @@ using namespace std;
 
 
 Dictionary::Dictionary() {
+	unordered_set<string> words;
 
 }
 
