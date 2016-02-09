@@ -2,23 +2,23 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
 #include "word.h"
 #include "dictionary.h"
+#include <unordered_set>
 
 using namespace std;
 
 
 Dictionary::Dictionary() {
-	ifstream infile ("text.txt");
+	ifstream infile ("/usr/share/dict/words");
 	string line;
-	unordered_set<string> set;
 
 	if (infile.is_open())
 	{
 		while (getline (infile, line))
 		{
 			set.insert(line);
+			words[line.size()].insert(line);
 		}
 		infile.close();
 	}
@@ -27,7 +27,7 @@ Dictionary::Dictionary() {
 }
 
 bool Dictionary::contains(const string& word) const {
-	const_iterator found = set.find(word);
+	unordered_set<string>::const_iterator found = set.find(word);
 	if (found == set.end())
 	{
 		return false;
