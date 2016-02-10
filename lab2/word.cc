@@ -25,7 +25,7 @@ unsigned int Word::get_matches(const vector<string>& t) const {
 		}
 		else if (t[i] > trigrams[index]){
 			i++;
-		}else {
+		}else if (t[i] == trigrams[index]) {
 			++matches;
 			++index;
 		}

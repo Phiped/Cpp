@@ -10,15 +10,33 @@ using namespace std;
 
 
 Dictionary::Dictionary() {
-	ifstream infile ("/usr/share/dict/words");
+	ifstream infile ("words.txt");
+	vector<string> trigrams;
 	string line;
+	string word;
+	int pos;
+	int size;
+
 
 	if (infile.is_open())
 	{
 		while (getline (infile, line))
 		{
-			set.insert(line);
-			words[line.size()].insert(line);
+			pos = line.find(" ");
+			word = line.substr(0,pos);
+			set.insert(word);
+			line.erase(0,pos+1);
+			pos = line.find(" ");
+			line.erase(0,pos+1);
+			size = line.size();
+//funkar hit
+
+
+
+
+
+//			Word* w = new Word(word,trigrams);
+//			words[word.size()].push_back(*w);
 		}
 		infile.close();
 	}
@@ -31,7 +49,7 @@ bool Dictionary::contains(const string& word) const {
 	if (found == set.end())
 	{
 		return false;
-	}
+	}  
 	return true;
 }
 
