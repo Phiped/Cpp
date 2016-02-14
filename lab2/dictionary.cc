@@ -43,8 +43,6 @@ Dictionary::Dictionary() {
 		}
 		infile.close();
 	}
-	cout<<set.size()<<endl;
-	//adds 99171 
 }
 
 bool Dictionary::contains(const string& word) const {
@@ -59,7 +57,7 @@ vector<string> Dictionary::get_suggestions(const string& word) {
 	vector<string> suggestions;
 	add_trigram_suggestions(suggestions, word);
 	rank_suggestions(suggestions, word);
-	//trim_suggestions(suggestions);
+	trim_suggestions(suggestions);
 	return suggestions;
 }
 
@@ -78,11 +76,14 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 	sort(trigrams.begin(),trigrams.end());		
 	for(int k = 0; k != 2; ++k)
 	{
-		for (unsigned int i = 0; i < words[w.size()+k].size(); ++i)
+		if(w.size()+k > 0)
 		{
-			if (words[w.size()+k].at(i).get_matches(trigrams) > (trigrams.size()/2))
+			for (unsigned int i = 0; i < words[w.size()+k].size(); ++i)
 			{
-				suggestions.push_back(words[w.size()+k].at(i).get_word());
+				if (words[w.size()+k].at(i).get_matches(trigrams) > (trigrams.size()/2))
+				{
+					suggestions.push_back(words[w.size()+k].at(i).get_word());
+				}
 			}
 		}
 	}
@@ -90,5 +91,17 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 }
 
 void Dictionary::rank_suggestions(vector<string>& suggestions, const string& word){
+//	int[26][26] distance;
+ 
 
+// 	vector<pair<int, string>> element;
+// 	element.push_back(make_pair(dist,word));
+// 	sort.element();
+}
+
+void Dictionary::trim_suggestions(vector<string>& suggestions){
+	if (suggestions.size()>5)
+	{
+		suggestions.resize(5);
+	}
 }

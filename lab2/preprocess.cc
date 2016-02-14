@@ -45,6 +45,8 @@ int main (int, char* argv[]) {
   {
     while ( getline (infile,line) )
     {
+      line.erase(remove(line.begin(),line.end(),'\''),line.end());
+      transform(line.begin(), line.end(), line.begin(), ::tolower);
     	processedLine = process(line);
     	outfile << processedLine << '\n';
     }

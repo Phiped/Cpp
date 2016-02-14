@@ -18,6 +18,7 @@ private:
 	std::vector<Word> words[maxsize];
 	void add_trigram_suggestions(std::vector<std::string>& v, const std::string& w);
 	void rank_suggestions(std::vector<std::string>& v, const std::string&);
+	void trim_suggestions(std::vector<std::string>& v);
 };
 
 #endif
