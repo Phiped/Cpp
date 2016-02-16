@@ -14,7 +14,6 @@ using namespace std;
 
 Dictionary::Dictionary() {
 	ifstream infile ("words.txt");
-	vector<string> trigrams;
 	string line;
 	string word;
 	int pos;
@@ -23,24 +22,21 @@ Dictionary::Dictionary() {
 
 	if (infile.is_open())
 	{
-		while (getline (infile, line))
-		{
-			trigrams.clear();
-
-			pos = line.find(" ");
-			word = line.substr(0,pos);
+		while(infile>>word){
 			set.insert(word);
-			line.erase(0,pos+1);
-			pos = line.find(" ");
-			line.erase(0,pos+1);
-
-			stringstream s(line);
-			while(getline (s,trigram,' ')){
-				trigrams.push_back(trigram);
+			vector<string> trigrams;
+			infile>>pos;
+			if(pos < 100)
+			{
+				for (int i = 0; i < pos; ++i)
+				{
+					infile>>trigram;
+					trigrams.push_back(trigram);
+				}
+				words[word.size()].push_back(Word(word,trigrams));
+			}else{
+				cout<<"sta";
 			}
-
-				Word* w = new Word(word,trigrams);
-				words[word.size()].push_back(*w);
 		}
 		infile.close();
 	}
@@ -66,7 +62,8 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
  	int size = w.size()-2;
  	vector<string> trigrams;
   	
-  	if (size < 0){
+  	if (size < 0)
+  	{
 	   	size = 0;
 	}
 	  	
@@ -77,13 +74,13 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 
 	sort(trigrams.begin(),trigrams.end());
 	
-	for(int k = 0; k != 2; ++k)
+	for(int k = -1; k != 2; ++k)
 	{
 		if(w.size()+k > 0)
 		{
 			for (unsigned int i = 0; i < words[w.size()+k].size(); ++i)
 			{
-				if (words[w.size()+k].at(i).get_matches(trigrams) > (trigrams.size()/2))
+				if (words[w.size()+k].at(i).get_matches(trigrams) >= (trigrams.size()/2))
 				{
 					suggestions.push_back(words[w.size()+k].at(i).get_word());
 				}
@@ -125,14 +122,14 @@ void Dictionary::rank_suggestions(vector<string>& suggestions, const string& wor
 	 			}else{
 	 				subcost = 1;
 	 			}
-	 			distance[i][j]=min(distance[i-1][j]+1, min(distance[i][j-1]+1, distance[i-1][j-1]+subcost));
+	 			distance[i][j]=min({distance[i-1][j]+1, distance[i][j-1]+1, distance[i-1][j-1]+subcost});
 	 		}
 	 	}
 		element.push_back(make_pair(distance[word.size()][suggestion.size()],suggestion));
 
-		cout<< distance[word.size()][suggestion.size()] <<"="<<suggestion<<" ";
+		//cout<< distance[word.size()][suggestion.size()] <<"="<<suggestion<<" ";
 	}
-	cout<<endl;
+	//cout<<endl;
 	sort(element.begin(),element.end());
 
 	for (unsigned int i = 0; i < element.size(); ++i)

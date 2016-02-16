@@ -10,33 +10,33 @@ using namespace std;
  *
  */
 void print(const Date& d) {
-	cout << setw(4) << setfill('0') << d.getYear() << '-';
-	cout << setw(2) << setfill('0') << d.getMonth() << '-';
-	cout << setw(2) << setfill('0') << d.getDay();
-}
+ 	cout << setw(4) << setfill('0') << d.getYear() << '-';
+ 	cout << setw(2) << setfill('0') << d.getMonth() << '-';
+ 	cout << setw(2) << setfill('0') << d.getDay();
+ }
 
 int main() {
-	// Check input and output of dates. Uncomment the following when you 
-	// have added operator>> and operator<<.
-	/*
-	bool cont = true;
-	while (cont) {
-		cout << "Type a date: ";
-		Date aDate;
-		cin >> aDate;
-		if (cin.eof()) {
-			cont = false;
-		} else if (!cin.good()) {
-			cout << "Wrong input format" << endl;
-			// restore stream state and ignore the rest of the line
-			cin.clear();
-			cin.ignore(10000, '\n');
-		}
-		else {
-			cout << "Output: " << aDate << endl;
-		}
-	}
-	*/
+	// // Check input and output of dates. Uncomment the following when you 
+	// // have added operator>> and operator<<.
+	
+	// bool cont = true;
+	// while (cont) {
+	// 	cout << "Type a date: ";
+	// 	Date aDate;
+	// 	cin >> aDate;
+	// 	if (cin.eof()) {
+	// 		cont = false;
+	// 	} else if (!cin.good()) {
+	// 		cout << "Wrong input format" << endl;
+	// 		// restore stream state and ignore the rest of the line
+	// 		cin.clear();
+	// 		cin.ignore(10000, '\n');
+	// 	}
+	// 	else {
+	// 		cout << "Output: " << aDate << endl;
+	// 	}
+	// }
+	
 	
 	// Check 'next' by creating an object describing today's date, then
 	// printing dates more than a month ahead

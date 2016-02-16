@@ -15,22 +15,22 @@ string Word::get_word() const {
 
 unsigned int Word::get_matches(const vector<string>& t) const {
 	int matches = 0;
-	int index = 0;
+	unsigned int index = 0;
+	unsigned int i = 0;
 
-	for (unsigned int i = 0; i < t.size(); ++i)
+	while(i < t.size() && index < trigrams.size())
 	{
 		if (t[i] == trigrams[index])
 		{
 			++index;
 			++matches;
+			++i;
 		}
 		else if (t[i] > trigrams[index]){
-			++i;
-
-		}else if (t[i] < trigrams[index]) {
-
 			++index;
 
+		}else if (t[i] < trigrams[index]) {
+			++i;
 		}
 	}
 	return matches;

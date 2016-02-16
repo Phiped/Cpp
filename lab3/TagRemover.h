@@ -7,7 +7,7 @@
 class TagRemover{
 public:
 	TagRemover(istream in);
-	void print(ostream cout);
+	void print(ostream cout) const;
 private:
 	std::string s;
 	std::istream in;

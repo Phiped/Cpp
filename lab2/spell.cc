@@ -9,6 +9,7 @@ using namespace std;
 
 int main() {
 	Dictionary dict;
+	cout<<"skapad";
 	string word;
 	while (cin >> word) {
 		transform(word.begin(), word.end(), word.begin(), ::tolower);
