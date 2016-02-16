@@ -16,26 +16,26 @@ void print(const Date& d) {
  }
 
 int main() {
-	// // Check input and output of dates. Uncomment the following when you 
-	// // have added operator>> and operator<<.
+	// Check input and output of dates. Uncomment the following when you 
+	// have added operator>> and operator<<.
 	
-	// bool cont = true;
-	// while (cont) {
-	// 	cout << "Type a date: ";
-	// 	Date aDate;
-	// 	cin >> aDate;
-	// 	if (cin.eof()) {
-	// 		cont = false;
-	// 	} else if (!cin.good()) {
-	// 		cout << "Wrong input format" << endl;
-	// 		// restore stream state and ignore the rest of the line
-	// 		cin.clear();
-	// 		cin.ignore(10000, '\n');
-	// 	}
-	// 	else {
-	// 		cout << "Output: " << aDate << endl;
-	// 	}
-	// }
+	bool cont = true;
+	while (cont) {
+		cout << "Type a date: ";
+		Date aDate;
+		cin >> aDate;
+		if (cin.eof()) {
+			cont = false;
+		} else if (!cin.good()) {
+			cout << "Wrong input format" << endl;
+			// restore stream state and ignore the rest of the line
+			cin.clear();
+			cin.ignore(10000, '\n');
+		}
+		else {
+			cout << "Output: " << aDate << endl;
+		}
+	}
 	
 	
 	// Check 'next' by creating an object describing today's date, then

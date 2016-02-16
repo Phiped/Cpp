@@ -39,28 +39,28 @@ void Date::next() {
 }
 
 std::istream& operator>>(std::istream& is, Date& d) {
-	string s;
+	std::string s;
 	is >> s;
-	year = s.substr(0,4);
-	month = s.substr(5,7);
-	day = s.substr(9,10);
+	d.year = s.substr(0,3);
+	d.month = s.substr(5,7);
+	d.day = s.substr(9,10);
 	return is;
 }
 
 std::ostream& operator<<(std::ostream& os, const Date& d) {
-	os << d.getYear << '-';
-	if (d.getMonth < 10)
+	os << d.getYear() << '-';
+	if (d.getMonth() < 10)
 	{
-		os<<0<<d.getMonth<< '-';
+		os<<0<<d.getMonth()<< '-';
 	}else{
-		os<< d.getMonth << '-';
+		os<< d.getMonth() << '-';
 	}
 
-	if (d.getDay < 10)
+	if (d.getDay() < 10)
 	{
-		os<<0<<d.getDay;
+		os<<0<<d.getDay();
 	}else{
-		os<< d.getDay;
+		os<< d.getDay();
 	}
 
 	return os;
