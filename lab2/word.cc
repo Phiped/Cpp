@@ -19,15 +19,18 @@ unsigned int Word::get_matches(const vector<string>& t) const {
 
 	for (unsigned int i = 0; i < t.size(); ++i)
 	{
-		if (t[i] < trigrams[index] )
+		if (t[i] == trigrams[index])
 		{
 			++index;
+			++matches;
 		}
 		else if (t[i] > trigrams[index]){
-			i++;
-		}else if (t[i] == trigrams[index]) {
-			++matches;
+			++i;
+
+		}else if (t[i] < trigrams[index]) {
+
 			++index;
+
 		}
 	}
 	return matches;

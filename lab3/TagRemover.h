@@ -1,12 +1,17 @@
 #include <iostream>
 #include <regex>
 #include <string>
+#ifndef TAGREMOVER_H
+#define TAGREMOVER_H
 
-Class TagRemover{
+class TagRemover{
 public:
 	TagRemover(istream in);
-	void print(ostream out) const;
+	void print(ostream cout);
 private:
-	std::regex e (string reg);
+	std::string s;
 	std::istream in;
-}
+};
+
+
+#endif

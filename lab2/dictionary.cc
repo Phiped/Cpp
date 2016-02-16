@@ -7,6 +7,7 @@
 #include "dictionary.h"
 #include <unordered_set>
 #include <algorithm>
+#include <utility>
 
 using namespace std;
 
@@ -64,6 +65,7 @@ vector<string> Dictionary::get_suggestions(const string& word) {
 void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const string& w){
  	int size = w.size()-2;
  	vector<string> trigrams;
+  	
   	if (size < 0){
 	   	size = 0;
 	}
@@ -73,7 +75,8 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 		trigrams.push_back(w.substr(i,3));
 	}
 
-	sort(trigrams.begin(),trigrams.end());		
+	sort(trigrams.begin(),trigrams.end());
+	
 	for(int k = 0; k != 2; ++k)
 	{
 		if(w.size()+k > 0)
@@ -91,12 +94,52 @@ void Dictionary::add_trigram_suggestions(vector<string>& suggestions, const stri
 }
 
 void Dictionary::rank_suggestions(vector<string>& suggestions, const string& word){
-//	int[26][26] distance;
- 
+	int distance [26][26];
+	vector<pair<int, string>> element;
+	string suggestion;
+	int subcost;
+	pair<int,string> temp;
 
-// 	vector<pair<int, string>> element;
-// 	element.push_back(make_pair(dist,word));
-// 	sort.element();
+	for (unsigned int i = 0; i <= word.size(); ++i)
+		{
+			distance[i][0] = i;
+		}
+
+	for (unsigned int k = 0; k < suggestions.size(); ++k)
+	{
+		suggestion = suggestions.at(k);
+
+		for (unsigned int i = 0; i <= suggestion.size(); ++i)
+		{
+			distance[0][i] = i;
+		}
+
+
+	 	for (unsigned int i = 1; i <= word.size(); ++i)
+	 	{
+	 		for (unsigned int j = 1; j <= suggestion.size(); ++j)
+	 		{
+	 			if (word.at(i-1) == suggestion.at(j-1))
+	 			{
+	 				subcost = 0;
+	 			}else{
+	 				subcost = 1;
+	 			}
+	 			distance[i][j]=min(distance[i-1][j]+1, min(distance[i][j-1]+1, distance[i-1][j-1]+subcost));
+	 		}
+	 	}
+		element.push_back(make_pair(distance[word.size()][suggestion.size()],suggestion));
+
+		cout<< distance[word.size()][suggestion.size()] <<"="<<suggestion<<" ";
+	}
+	cout<<endl;
+	sort(element.begin(),element.end());
+
+	for (unsigned int i = 0; i < element.size(); ++i)
+	{
+		temp = element[i];
+		suggestions[i] = temp.second;
+	}
 }
 
 void Dictionary::trim_suggestions(vector<string>& suggestions){
