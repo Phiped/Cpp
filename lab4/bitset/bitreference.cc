@@ -1,11 +1,18 @@
 #include "bitreference.h"
 #include "bitset.h"
+#include <iostream>
 
 BitReference& BitReference::operator=(bool b) {
 	//
 	// *** IMPLEMENT ***
 	// This corresponds to the set() function in SimpleBitset.
 	//
+	if (b) {
+		*p_bits |= 1L << *(p_bits+pos);
+	} else { 
+		*p_bits &= ~ (1L << *(p_bits+pos));
+	}
+
 	return *this;
 }
 

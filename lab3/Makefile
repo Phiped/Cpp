@@ -18,11 +18,15 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = date_test
+#PROGS = date_test 
+#PROGS = test_toString
+PROGS = html_test date_test test_toString
 
 all: $(PROGS) 
 # Targets rely on implicit rules for compiling and linking
 date_test: date.o date_test.o
+test_toString: date.o 
+html_test: TagRemover.o
 
 # Phony targets
 .PHONY: all clean

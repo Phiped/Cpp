@@ -1,16 +1,28 @@
 #include "TagRemover.h"
 
-TagRemover::TagRemover(ifstream cin){
-	cin.open("test.html");
-	if (cin.is_open())
+using namespace std;
+
+TagRemover::TagRemover(ifstream& cin){
+	regex e ("<[a-zA-Z'.\\s]+>");
+	result ="";
+
+	if (cin)
 	{
-		while(cin.get()){
-			
+		while(cin>>result){
+			s+=result;
+			s+=" ";
 		}
+
+		result = regex_replace (s,e,"");
+		result = regex_replace (result,regex("&lt"),"<");
+		result = regex_replace (result,regex("&gt"),">");
+		result = regex_replace (result,regex("&nbsp")," ");
+		result = regex_replace (result,regex("&amp"),"&");
+		//<[a-zA-Z\s.']*>
 	}
 	cin.close();
 }
 
-void TagRemover::print(ostream cout) const{
-
+void TagRemover::print(std::ostream& cout) const{
+	cout<<result<<endl;
 }

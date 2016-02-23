@@ -39,11 +39,13 @@ int main (int, char* argv[]){
 
 	primes = eratos(200000);
 
-	for (int i = 0; i < primes.size(); ++i)
+	//last = primes.find_last_of("P");
+	for (int i = primes.size()-1; i >= 0; --i)
 	{
 		if (primes.at(i) == 'P' && i > last)
 		{
 			last = i;
+			break;
 		}
 	}
 	cout<<endl<<"Sista primtalet innan 200000:	";

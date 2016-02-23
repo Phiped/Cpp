@@ -39,11 +39,9 @@ void Date::next() {
 }
 
 std::istream& operator>>(std::istream& is, Date& d) {
-	std::string s;
-	is >> s;
-	d.year = s.substr(0,3);
-	d.month = s.substr(5,7);
-	d.day = s.substr(9,10);
+	char c;
+	is >> d.year>>c>>d.month>>c>>d.day;
+	if(d.month<12 && d.day < daysPerMonth[d.month])
 	return is;
 }
 

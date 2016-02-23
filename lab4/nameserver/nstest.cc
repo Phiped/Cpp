@@ -37,18 +37,18 @@ int main() {
 	test(mns);
 	cout << "Map passed ..." << endl;
 	
-	/*
-	 * Test the unordered map name server.
-	 */
+	// /*
+	//  * Test the unordered map name server.
+	//  */
 	UMNS umns;
 	test(umns);
 	cout << "Unordered map passed ..." << endl;
 	
-	/*
-	 * Test the hash name server.
-	 * The parameter to the constructor is the size of the
-	 * hash table.
-	 */
+	// /*
+	//  * Test the hash name server.
+	//  * The parameter to the constructor is the size of the
+	//  * hash table.
+	//  */
 	HNS hns(4711);
 	test(hns);
 	cout << "Hash passed ..." << endl;
