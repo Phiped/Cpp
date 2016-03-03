@@ -6,6 +6,7 @@
 #define MORSECODE_H
 
 #include <string>
+#include <vector>
 
 class MorseCode {
 public:

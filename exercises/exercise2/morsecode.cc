@@ -1,40 +1,45 @@
 #include "morsecode.h"
-
-#include <fstream>
 #include <sstream>
+#include <fstream>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 MorseCode::MorseCode() {
-	ifstream in("morse.def");
-	string s;
-	while(in.getline(s,10)){
-		std::cout << s.erase(0,2) << endl;
+	ifstream infile("morse.def");
+	char ch;
+	string code;
+
+	while(infile>>ch>>code){
+		table[ch-'a']=code;
 	}
 }
 
 string MorseCode::encode(const string& text) const {
-	ifstream is(text);
-	char c;
-	string s;x
-
-	while(is.get(c)){
-		/*s.insert();*/
+	string result;
+	for (char ch: text)
+	{
+		if(ch <= 'z' && ch >= 'a'){
+			result += table[ch-'a']+ " ";
+		}
 	}
-	is.close();
 
-	return s;
+	return result;
 }
 
 string MorseCode::decode(const string& code) const {
-	ifstream is(code);
-	char c;
-	string s;
+	stringstream ss;
+	ss << code;
+	string morse;
+	string result;
 
-	while(is.get(c)){
-		/*s.insert();*/
+	while(ss>>morse){
+		int i = 0;
+		while(i != 26 && table[i] != morse){
+			++i;
+		}
+		result += (i != 26) ? static_cast<char>(i + 'a') : '?';
 	}
-	is.close();
-
-	return s;
+	return result;
 }

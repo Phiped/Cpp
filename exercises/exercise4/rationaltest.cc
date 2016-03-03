@@ -1,4 +1,4 @@
-//#include "rational.h"
+#include "rational.h"
 #include <iostream>
 
 using namespace std;
@@ -14,7 +14,7 @@ int main() {
 	
 	c = 1;
 	b += c;
-	c = a + b;
+	c = a+b;
 	cout << b << "\t(4)" << endl;
 	cout << a + b + c << "\t(28/3)" << endl;
 	cout << a + b + c + 1 << "\t(31/3)" << endl;

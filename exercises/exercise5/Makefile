@@ -6,6 +6,7 @@ CC  = g++
 
 # Define preprocessor, compiler, and linker flags. Uncomment the # lines
 # if you use clang++ and wish to use libc++ instead of GNU's libstdc++.
+CPPFLAGS = -std=c++11
 CXXFLAGS =  -g -O2 -Wall -W -pedantic-errors
 CXXFLAGS += -Wmissing-braces -Wparentheses -Wold-style-cast 
 CXXFLAGS += -std=c++11 
@@ -15,7 +16,8 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = texttest sortwords personsorttest
+PROGS = texttest sortwords personsorttest avtest
+#personsorttest
 
 all: $(PROGS)
 
@@ -23,6 +25,7 @@ all: $(PROGS)
 texttest: texttest.o
 sortwords: sortwords.o
 personsorttest: personsorttest.o person.o
+avtest: av.o
 
 # Phony targets
 .PHONY: all clean

@@ -6,6 +6,13 @@
 
 SVector::SVector(size_t size) : n(size), v(new int[n]) {}
 
+SVector::SVector(const SVector& sv): n(sv.n), v(new int[n]) {
+	for (size_t i = 0; i < n; ++i)
+	{
+		v[i] = sv.v[i]; 
+	}
+}
+
 SVector::~SVector() {
 	delete[] v;
 }

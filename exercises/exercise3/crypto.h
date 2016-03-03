@@ -7,6 +7,9 @@ class Crypto {
 public:
 	static std::string encrypt(const std::string& text, unsigned key);
 	static std::string decrypt(const std::string& crypt, unsigned key);
+private:
+	encrypt_key = 0;
+	
 };
 
 #endif

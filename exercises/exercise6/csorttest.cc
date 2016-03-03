@@ -15,6 +15,34 @@ template <typename Iterator>
 // The difference between the largest element and the smallest
 // element should not be too large.
 void csort(Iterator first, Iterator last) {
+	int dist = distance(first,last);
+	std::vector<int> v(dist);
+	Iterator temp = first;
+	int index;
+
+	while(temp != last){
+		++v[*temp];
+		++temp;
+	}
+
+	for (size_t i = 0; i < v.size(); ++i)
+	{
+		if(i != 0){
+			v[i] += v[i-1];
+		}
+	}
+	temp = first;
+	
+	while(temp != last){
+		index = v[*temp]-1;
+		*(first + index) = *temp;
+		++temp;
+	}
+
+
+
+
+
 }
 
 template <typename Iterator>

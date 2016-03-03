@@ -6,6 +6,7 @@ CC  = g++
 
 # Define preprocessor, compiler, and linker flags. Uncomment the # lines
 # if you use clang++ and wish to use libc++ instead of GNU's libstdc++.
+CPPFLAGS = -std=c++11
 CXXFLAGS =  -g -O2 -Wall -W -pedantic-errors
 CXXFLAGS += -Wmissing-braces -Wparentheses -Wold-style-cast 
 CXXFLAGS += -std=c++11 
@@ -15,13 +16,14 @@ LDFLAGS =   -g
 #LDFLAGS +=  -stdlib=libc++
 
 # Targets
-PROGS = shapetest shapevectortest
+PROGS = shapetest shapevectortest rationaltest
 
 all: $(PROGS)
 
 # Targets rely on implicit rules for compiling and linking
 shapetest: shapetest.o 
 shapevectortest: shapevectortest.o
+rationaltest: rational.o
 
 # Phony targets
 .PHONY: all clean

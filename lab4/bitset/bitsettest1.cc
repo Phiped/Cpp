@@ -27,18 +27,18 @@ int main() {
 	print(bs);
 	cout << endl;
 	
-	// // Find the first five bits that are set, complement them, print
-	// size_t cleared = 0;
-	// size_t pos = 0;
-	// while (pos != bs.size() && cleared != 5) {
-	// 	if (bs[pos]) {
-	// 		bs[pos] = !bs[pos];
-	// 		++cleared;
-	// 	}
-	// 	++pos;
-	// }
-	// print(bs);
-	// cout << endl;
+	// Find the first five bits that are set, complement them, print
+	size_t cleared = 0;
+	size_t pos = 0;
+	while (pos != bs.size() && cleared != 5) {
+		if (bs[pos]) {
+			bs[pos] = !bs[pos];
+			++cleared;
+		}
+		++pos;
+	}
+	print(bs);
+	cout << endl;
 
 	// Count the number of set bits, print
 	size_t set = 0;

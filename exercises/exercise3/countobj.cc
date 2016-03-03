@@ -9,6 +9,7 @@
 class Counted {
 public:
 	Counted();
+	Counted(const Counted& c);
 	~Counted();
 	static int getNbrObj();
 private:
@@ -20,6 +21,11 @@ int Counted::nbrObj = 0;
 Counted::Counted() {
 	nbrObj++;
 }
+
+Counted::Counted(const Counted&) {
+	nbrObj++;
+}
+
 
 Counted::~Counted() {
 	nbrObj--;

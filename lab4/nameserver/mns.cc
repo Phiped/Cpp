@@ -1,4 +1,5 @@
 #include "mns.h"
+#include <stdexcept>
 
 MNS::MNS(){}
 
@@ -13,11 +14,10 @@ bool MNS::remove(const HostName& host){
 }
 
 IPAddress MNS::lookup(const HostName& host) const{
-	auto it = map.find(host);
-
-	if(it != map.end()){
-		return (*it).second;
-	}else{
+	
+	try{
+		return map.at(host);
+	}catch (out_of_range& e){
 		return NON_EXISTING_ADDRESS;
-	} 
+	}
 }

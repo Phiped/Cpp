@@ -6,6 +6,7 @@
 using namespace std;
 
 string Crypto::encrypt(const string& text, unsigned int key) {
+	
 	return "";
 }
 
